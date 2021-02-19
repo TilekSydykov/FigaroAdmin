@@ -3,15 +3,46 @@
     <div class="row mb-2">
       <div class="col-sm-6">
         <h1 class="m-0">Терминал</h1>
-      </div><!-- /.col -->
+      </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Главная</a></li>
-          <li class="breadcrumb-item active">Терминал</li>
+          <li class="breadcrumb-item"><a routerLink="/terminals">Терминалы</a></li>
+          <li class="breadcrumb-item active">{{ termminal.Name }}</li>
         </ol>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
+      </div>
+    </div>
+  </div>
 </div>
 
-<p>terminal works!</p>
+<section  class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-4">
+        <div class="card">
+          <div class="card-body">
+            <label class="row">
+              Название
+              <input class="form-control" type="text" readonly [(ngModel)]="termminal.Name">
+            </label>
+            <label class="row">
+              Местоположение
+              <input class="form-control" type="text" readonly [(ngModel)]="termminal.Location">
+            </label>
+            <label class="row">
+              Группа
+              <input class="form-control" type="text" readonly [(ngModel)]="termminal.Name">
+            </label>
+            <label class="row">
+              MAC
+              <input class="form-control" type="text" readonly [(ngModel)]="termminal.MacID">
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+    </div>
+  </div>
+</section>

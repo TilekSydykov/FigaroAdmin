@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div *ngIf="logged_in" class="wrapper">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -11,7 +11,6 @@
         <a routerLink="/" class="nav-link">Главная</a>
       </li>
     </ul>
-
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -74,38 +73,22 @@
           <img src="assets//user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a routerLink="/profile" class="d-block">Admin</a>
+          <a routerLink="/profile" class="d-block">{{ user.Name }}</a>
         </div>
       </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+
           <li class="nav-header">ЛИСТ</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a  routerLink="/terminals" href="#" class="nav-link">
               <i class="nav-icon fas fa-compass"></i>
               <p>
                 Терминалы
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="/terminals" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Все</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="/terminal/1" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Терминал 1</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -122,18 +105,21 @@
                   <p>Все</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a routerLink="/terminal/1" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Пользователь 1</p>
-                </a>
-              </li>
             </ul>
           </li>
 
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
+
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a (click)="logOut()" href="#" class="nav-link">
+            <i class="nav-icon fas fa-power-off"></i>
+            Выйти
+          </a>
+        </div>
+      </div>
     </div>
     <!-- /.sidebar -->
   </aside>
@@ -155,5 +141,7 @@
   </aside>
   <!-- /.control-sidebar -->
 </div>
+
+<app-login *ngIf="!logged_in"></app-login>
 
 

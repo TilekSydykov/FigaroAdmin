@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'terminals', component: TerminalsComponent},
   {path: 'terminal/:id', component: TerminalComponent},
-  { path: '**', component: PageNotFoundComponent }
+  {path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

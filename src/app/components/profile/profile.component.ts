@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {StorageService} from "../../services/storage/storage.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  user: User = new User();
+  constructor(private storageService: StorageService) { }
 
   ngOnInit(): void {
+    let u = this.storageService.getUser();
+    if(u !== null){
+      this.user = u;
+    }
   }
 
 }

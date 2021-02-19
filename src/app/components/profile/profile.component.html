@@ -14,4 +14,60 @@
   </div><!-- /.container-fluid -->
 </div>
 
-<p>profile works!</p>
+<section  class="content">
+  <div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+      <div class="col-lg-3 col-4">
+        <ul class="text-secondary list-unstyled">
+          <li >
+              Главная
+          </li>
+          <li >
+            Редактирование
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-9 col-8">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="ion ion-clipboard mr-1"></i>
+              {{ user.Email }}
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <ul class="list-unstyled">
+              <li class="list-group">
+                <div class="row">
+                  <div class="col col-3">
+                    Имя:
+                  </div>
+                  <div class="col col-9">
+                    {{ user.Name }}
+                  </div>
+                </div>
+              </li>
+              <li class="list-group">
+                <div class="row">
+                  <div class="col col-3">
+                    Почта:
+                  </div>
+                  <div class="col col-9">
+                    {{ user.Email }}
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.container-fluid -->
+</section>
