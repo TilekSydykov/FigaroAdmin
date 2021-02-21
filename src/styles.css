@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.click{
+  cursor: pointer;
+}
+
+.parent-hover:hover .child-hover{
+  opacity: 1;
+}
+.child-hover{
+  opacity: 0;
+  transition: 0.5s;
+}

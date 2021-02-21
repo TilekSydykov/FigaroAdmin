@@ -20,12 +20,20 @@ export class TerminalsComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.update();
     this.socketService.handlers.set("new_connection", (data: any) => {
+      let found = false;
+      let dataTerminal: Terminal = JSON.parse(data.data);
       this.terminals.forEach(i => {
-        if (i.MacID == data.data){
-          i.Online = true
+        if (i.MacID == dataTerminal.MacID){
+          i.Online = true;
+          found = true;
         }
-      })
-    });
+      });
+      if(!found){
+        dataTerminal.Online = true;
+        this.terminals.push(dataTerminal)
+      }
+      }
+    );
     this.socketService.handlers.set("connection_closed", (data: any) => {
       this.terminals.forEach(i => {
         if (i.MacID == data.data){

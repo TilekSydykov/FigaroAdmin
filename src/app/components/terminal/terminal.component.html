@@ -8,39 +8,50 @@
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Главная</a></li>
           <li class="breadcrumb-item"><a routerLink="/terminals">Терминалы</a></li>
-          <li class="breadcrumb-item active">{{ termminal.Name }}</li>
+          <li class="breadcrumb-item active">{{ terminal.Name }}</li>
         </ol>
       </div>
     </div>
   </div>
 </div>
 
-<section  class="content">
+<section class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col col-4">
         <div class="card">
+          <div class="card-header ui-sortable-handle">
+            <h3 class="card-title">Параметры</h3>
+            <div class="card-tools">
+              <ul class="nav nav-pills ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link active click" (click)="save()" data-toggle="tab">Сохранить</a>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div class="card-body">
             <label class="row">
               Название
-              <input class="form-control" type="text" readonly [(ngModel)]="termminal.Name">
+              <input class="form-control" type="text" [(ngModel)]="terminal.Name">
             </label>
             <label class="row">
               Местоположение
-              <input class="form-control" type="text" readonly [(ngModel)]="termminal.Location">
+              <input class="form-control" type="text" [(ngModel)]="terminal.Location">
             </label>
             <label class="row">
               Группа
-              <input class="form-control" type="text" readonly [(ngModel)]="termminal.Name">
+              <select [(ngModel)]="terminal.GroupID" class="form-control">
+                <option *ngFor="let c of groups" [ngValue]="c.ID">{{c.Name}}</option>
+              </select>
             </label>
             <label class="row">
               MAC
-              <input class="form-control" type="text" readonly [(ngModel)]="termminal.MacID">
+              <input class="form-control" type="text" readonly [(ngModel)]="terminal.MacID">
             </label>
           </div>
         </div>
       </div>
-
     </div>
     <div class="row">
     </div>

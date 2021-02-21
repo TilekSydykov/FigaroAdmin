@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {StorageService} from "../storage/storage.service";
 import {observable} from "rxjs";
+import {environment} from "../../../environments/environment";
 
 
 export class Message {
@@ -19,9 +20,10 @@ export class Message {
 @Injectable({
   providedIn: 'root'
 })
-export class SocketService {
 
-  url = "ws://localhost:8080/socket/terminal/user?email=";
+export class SocketService {
+  url = "ws://37.139.42.202/socket/terminal/user?email=";
+  // url = "ws://"+ environment.host +"/socket/terminal/user?email=";
   ws: WebSocket | undefined;
 
   constructor(storageService: StorageService) {
@@ -55,6 +57,4 @@ export class SocketService {
       }
     });
   }
-
-
 }

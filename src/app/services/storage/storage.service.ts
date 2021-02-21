@@ -28,7 +28,6 @@ export class StorageService {
     return <string>localStorage.getItem('token');
   }
 
-
   setToken(token: string){
     localStorage.setItem('token', token);
   }
