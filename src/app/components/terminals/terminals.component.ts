@@ -4,6 +4,8 @@ import {HttpService} from "../../services/http/http.service";
 import {AddTerminalResponse} from "../../models/response/add-terminal-response";
 import {ToastrService} from "ngx-toastr";
 import {SocketService} from "../../services/socket/socket.service";
+import {TerminalGroup} from "../../models/terminal-group";
+import {AddTerminalGroupResponse} from "../../models/response/add-terminal-group-response";
 
 @Component({
   selector: 'app-terminals',
@@ -13,12 +15,18 @@ import {SocketService} from "../../services/socket/socket.service";
 export class TerminalsComponent implements OnInit, OnDestroy{
   newTerminal: Terminal = new Terminal();
   terminals: Array<Terminal> = [];
+
+  groups: Array<TerminalGroup> = [];
+
+  newGroup = new TerminalGroup();
+
   constructor(private httpService: HttpService,
               private toastr: ToastrService,
               private socketService: SocketService) { }
 
   ngOnInit(): void {
     this.update();
+    this.updateGroups();
     this.socketService.handlers.set("new_connection", (data: any) => {
       let found = false;
       let dataTerminal: Terminal = JSON.parse(data.data);
@@ -43,10 +51,24 @@ export class TerminalsComponent implements OnInit, OnDestroy{
     });
   }
 
+  createGroup(){
+    this.httpService.addTerminalGroup(this.newGroup).subscribe((i:AddTerminalGroupResponse) => {
+      if(i.Error == null){
+        this.updateGroups()
+      }
+    })
+  }
+
   update(){
     this.httpService.getTerminals().subscribe((t:Terminal[]) => {
       this.terminals = t;
     });
+  }
+
+  updateGroups(){
+    this.httpService.getTerminalGroups().subscribe((arr)=>{
+      this.groups = arr
+    })
   }
 
   add(){

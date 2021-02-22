@@ -15,41 +15,82 @@
 </div>
 <div class="content">
   <div class="container-fluid">
-    <div class="card">
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table no-margin">
-            <thead>
-            <tr>
-              <th>Terminal ID</th>
-              <th>Name</th>
-              <th>Location</th>
-              <th>Mac</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let terminal of terminals">
-              <td>{{terminal.ID}}</td>
-              <td>{{ terminal.Name }}</td>
-              <td>{{ terminal.Location }}</td>
-              <td>{{terminal.MacID}}</td>
-              <td>
-                <span *ngIf="terminal.Online" style="color: #51A351">Онлайн</span>
-                <span *ngIf="!terminal.Online" style="color: #BD362F">Оффлайн</span>
-              </td>
-              <td>
-                <button class="btn" [routerLink]="['/terminal/',  terminal.ID]">Подробнее</button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+
+    <div class="row">
+      <section class="col-lg-4 connectedSortable">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="ion ion-clipboard mr-1"></i>
+              Группы
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="table-responsive">
+              <p class="text-secondary" *ngIf="groups.length < 1">
+                У вас нет групп
+              </p>
+              <ul class="list-unstyled">
+                <li *ngFor="let g of groups" class="parent-hover">
+                  {{ g.Name }}
+                  <span class="float-right child-hover">удалить</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <div class="row">
+              <div class="col-6">
+                <input type="text" [(ngModel)]="newGroup.Name" class="form-control" placeholder="Название новой группы">
+              </div>
+              <div class="col-6">
+                <button (click)="createGroup()" class="btn btn-success">Создать</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="card-footer">
-        всего {{ terminals.length }} <a class="list-link" (click)="update()">обновить</a>
-      </div>
+      </section>
+      <section class="col-lg-8 connectedSortable">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table no-margin">
+                <thead>
+                <tr>
+                  <th>Terminal ID</th>
+                  <th>Name</th>
+                  <th>Location</th>
+                  <th>Mac</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let terminal of terminals">
+                  <td>{{terminal.ID}}</td>
+                  <td>{{ terminal.Name }}</td>
+                  <td>{{ terminal.Location }}</td>
+                  <td>{{terminal.MacID}}</td>
+                  <td>
+                    <span *ngIf="terminal.Online" style="color: #51A351">Онлайн</span>
+                    <span *ngIf="!terminal.Online" style="color: #BD362F">Оффлайн</span>
+                  </td>
+                  <td>
+                    <button class="btn" [routerLink]="['/terminal/',  terminal.ID]">Подробнее</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer">
+            всего {{ terminals.length }} <a class="list-link" (click)="update()">обновить</a>
+          </div>
+        </div>
+      </section>
     </div>
+
   </div>
 </div>
