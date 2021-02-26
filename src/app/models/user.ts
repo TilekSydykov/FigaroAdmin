@@ -3,6 +3,7 @@ export class User {
   Name: string = "";
   Password: string = "";
   Email: string = "";
+  GroupID: number = 0;
   CreatedAt: any = null;
   UpdatedAt: any = null;
   DeletedAt: any = null;

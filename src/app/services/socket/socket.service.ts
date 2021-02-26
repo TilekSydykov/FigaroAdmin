@@ -20,10 +20,9 @@ export class Message {
 @Injectable({
   providedIn: 'root'
 })
-
 export class SocketService {
-  url = "ws://37.139.42.202/socket/terminal/user?email=";
-  // url = "ws://"+ environment.host +"/socket/terminal/user?email=";
+  // url = "ws://37.139.42.202/socket/terminal/user?email=";
+  url = "ws://"+ environment.host +"/socket/terminal/user?email=";
   ws: WebSocket | undefined;
 
   constructor(storageService: StorageService) {

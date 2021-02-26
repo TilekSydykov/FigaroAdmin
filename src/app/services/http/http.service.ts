@@ -9,6 +9,8 @@ import {StorageService} from "../storage/storage.service";
 import {AddTerminalResponse} from "../../models/response/add-terminal-response";
 import {TerminalGroup} from "../../models/terminal-group";
 import {AddTerminalGroupResponse} from "../../models/response/add-terminal-group-response";
+import {Group} from "../../models/group";
+import {AddGroupResponse} from "../../models/response/add-group-response";
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +49,35 @@ export class HttpService {
     return this.http.post<AddTerminalGroupResponse>(this.e.terminalGroup, t)
   }
 
+  public saveTerminalGroup(t: TerminalGroup): Observable<TerminalGroup>{
+    return this.http.put<TerminalGroup>(this.e.terminalGroup + "/" +t.ID, t)
+  }
+
+  public deleteTerminalGroup(t: TerminalGroup): Observable<String>{
+    return this.http.delete<String>(this.e.terminalGroup + "/" +t.ID)
+  }
+
   public getTerminalGroups(): Observable<Array<TerminalGroup>>{
     return this.http.get<Array<TerminalGroup>>(this.e.terminalGroup)
+  }
+
+  public addGroup(t: Group): Observable<AddGroupResponse>{
+    return this.http.post<AddGroupResponse>(this.e.group, t)
+  }
+
+  public saveGroup(t: Group): Observable<TerminalGroup>{
+    return this.http.put<Group>(this.e.group + "/" +t.ID, t)
+  }
+
+  public deleteGroup(t: Group): Observable<String>{
+    return this.http.delete<String>(this.e.group + "/" +t.ID)
+  }
+
+  public getGroups(): Observable<Array<Group>>{
+    return this.http.get<Array<Group>>(this.e.group)
+  }
+
+  public getUsers(): Observable<Array<User>>{
+    return this.http.get<Array<User>>(this.e.user)
   }
 }

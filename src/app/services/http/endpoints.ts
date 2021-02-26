@@ -5,5 +5,6 @@ export class Endpoints {
 
   user = this.api + '/user';
   terminal = this.api + '/terminal';
+  group = this.api + "/group";
   terminalGroup = this.api + '/terminalgroup';
 }

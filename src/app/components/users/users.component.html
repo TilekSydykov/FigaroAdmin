@@ -1,1 +1,103 @@
-<p>users works!</p>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Пользователи</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Главная</a></li>
+          <li class="breadcrumb-item active">Пользователи</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="row">
+      <section class="col-lg-4 connectedSortable">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="ion ion-clipboard mr-1"></i>
+              Роли
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="table-responsive">
+              <p class="text-secondary" *ngIf="groups.length < 1">
+                У вас нет ролей
+              </p>
+              <ul class="list-unstyled">
+                <li *ngFor="let g of groups" class="parent-hover">
+                  <div *ngIf="!g.IsEdit">
+                    - {{ g.Name }}
+                    <span class="float-right child-hover">
+                      <i class="fa fa-edit" (click)="g.IsEdit = true"></i>
+                      &nbsp;
+                      <i class="fa fa-trash" (click)="deleteGroup(g)"></i>
+                    </span>
+                  </div>
+                  <div *ngIf="g.IsEdit" class="row">
+                    <div class="col-6">
+                      <input type="text" [(ngModel)]="g.Name" class="form-control" placeholder="Название">
+                    </div>
+                    <div class="col-3">
+                      <button (click)="saveGroup(g); g.IsEdit = false" class="btn btn-success float-right">Сохранить</button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <div class="row">
+              <div class="col-6">
+                <input type="text" [(ngModel)]="newGroup.Name" class="form-control" placeholder="Название новой группы">
+              </div>
+              <div class="col-6">
+                <button (click)="createGroup()" class="btn btn-success">Создать</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="col-lg-8 connectedSortable">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table no-margin">
+                <thead>
+                <tr>
+                  <th>Terminal ID</th>
+                  <th>Name</th>
+                  <th>Location</th>
+                  <th>Mac</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{user.ID}}</td>
+                  <td>{{ user.Name }}</td>
+
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer">
+            всего {{ users.length }} <a class="list-link" (click)="update()">обновить</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+</div>

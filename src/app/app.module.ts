@@ -17,6 +17,7 @@ import {FormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthInterceptor} from "./services/http/AuthInterceptor";
+import { PricesComponent } from './components/prices/prices.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {AuthInterceptor} from "./services/http/AuthInterceptor";
     TerminalComponent,
     PageNotFoundComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    PricesComponent
   ],
   imports: [
     BrowserModule,

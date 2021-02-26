@@ -52,10 +52,39 @@ export class TerminalsComponent implements OnInit, OnDestroy{
   }
 
   createGroup(){
+    if(this.newGroup.Name == ""){
+      this.toastr.error("Поле пустое");
+      return
+    }
     this.httpService.addTerminalGroup(this.newGroup).subscribe((i:AddTerminalGroupResponse) => {
       if(i.Error == null){
-        this.updateGroups()
+        this.toastr.success("Группа создана");
+        this.updateGroups();
+        this.newGroup.Name = "";
+      }else {
+        this.toastr.error("Error");
       }
+    })
+  }
+
+  saveGroup(g: TerminalGroup){
+    this.httpService.saveTerminalGroup(g).subscribe((i:TerminalGroup) => {
+      this.toastr.success("Сохранено")
+    })
+  }
+
+  deleteGroup(g: TerminalGroup){
+    if (confirm("Уверены что хотите удалить группу? " + g.Name)){
+      this.httpService.deleteTerminalGroup(g).subscribe((t:String) => {
+        this.updateGroups();
+        this.toastr.success("Успешно удалено")
+      });
+    }
+  }
+
+  updateGroups(){
+    this.httpService.getTerminalGroups().subscribe((arr)=>{
+      this.groups = arr
     })
   }
 
@@ -65,11 +94,7 @@ export class TerminalsComponent implements OnInit, OnDestroy{
     });
   }
 
-  updateGroups(){
-    this.httpService.getTerminalGroups().subscribe((arr)=>{
-      this.groups = arr
-    })
-  }
+
 
   add(){
     if (this.newTerminal.Name == ""){

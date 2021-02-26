@@ -33,8 +33,22 @@
               </p>
               <ul class="list-unstyled">
                 <li *ngFor="let g of groups" class="parent-hover">
-                  {{ g.Name }}
-                  <span class="float-right child-hover">удалить</span>
+                  <div *ngIf="!g.IsEdit">
+                    - {{ g.Name }}
+                    <span class="float-right child-hover">
+                      <i class="fa fa-edit" (click)="g.IsEdit = true"></i>
+                      &nbsp;
+                      <i class="fa fa-trash" (click)="deleteGroup(g)"></i>
+                    </span>
+                  </div>
+                  <div *ngIf="g.IsEdit" class="row">
+                    <div class="col-6">
+                      <input type="text" [(ngModel)]="g.Name" class="form-control" placeholder="Название">
+                    </div>
+                    <div class="col-3">
+                      <button (click)="saveGroup(g); g.IsEdit = false" class="btn btn-success float-right">Сохранить</button>
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -94,3 +108,4 @@
 
   </div>
 </div>
+

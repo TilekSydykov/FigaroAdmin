@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: 'users', component: UsersComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'terminals', component: TerminalsComponent},
+  {path: 'price', component: TerminalsComponent},
   {path: 'terminal/:id', component: TerminalComponent},
   {path: '**', component: PageNotFoundComponent }
 ];
