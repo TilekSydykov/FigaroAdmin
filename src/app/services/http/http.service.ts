@@ -80,4 +80,8 @@ export class HttpService {
   public getUsers(): Observable<Array<User>>{
     return this.http.get<Array<User>>(this.e.user)
   }
+
+  public saveUser(u: User): Observable<User>{
+    return this.http.put<User>(this.e.user + "/" + u.ID, u)
+  }
 }

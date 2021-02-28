@@ -70,4 +70,10 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  saveUser(u: User){
+    this.httpService.saveUser(u).subscribe((t:User) => {
+      this.toastr.success("сохранено")
+    });
+  }
+
 }

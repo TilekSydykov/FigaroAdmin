@@ -7,5 +7,11 @@ export class Terminal {
   UpdatedAt: any = null;
   DeletedAt: any = null;
   MacID: string = "";
+  Stat: string = "";
+  Money :string = "";
+  Version: string = "";
   Online: boolean = false;
+
+  // local variables
+  isVisible = true;
 }

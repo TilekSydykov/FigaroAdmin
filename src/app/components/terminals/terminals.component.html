@@ -46,7 +46,56 @@
                       <input type="text" [(ngModel)]="g.Name" class="form-control" placeholder="Название">
                     </div>
                     <div class="col-3">
-                      <button (click)="saveGroup(g); g.IsEdit = false" class="btn btn-success float-right">Сохранить</button>
+                      <button (click)="saveGroup(g); g.IsEdit = false" class="btn btn-success float-right">Сохранить
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <div class="row">
+              <div class="col-6">
+                <input type="text" [(ngModel)]="newGroup.Name" class="form-control" placeholder="Название новой группы">
+              </div>
+              <div class="col-6">
+                <button (click)="createGroup()" class="btn btn-success">Создать</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="ion ion-clipboard mr-1"></i>
+              Обновления
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <p class="text-secondary" *ngIf="groups.length < 1">
+                У вас нет групп
+              </p>
+              <ul class="list-unstyled">
+                <li *ngFor="let g of groups" class="parent-hover">
+                  <div *ngIf="!g.IsEdit">
+                    - {{ g.Name }}
+                    <span class="float-right child-hover">
+                      <i class="fa fa-edit" (click)="g.IsEdit = true"></i>
+                      &nbsp;
+                      <i class="fa fa-trash" (click)="deleteGroup(g)"></i>
+                    </span>
+                  </div>
+                  <div *ngIf="g.IsEdit" class="row">
+                    <div class="col-6">
+                      <input type="text" [(ngModel)]="g.Name" class="form-control" placeholder="Название">
+                    </div>
+                    <div class="col-3">
+                      <button (click)="saveGroup(g); g.IsEdit = false" class="btn btn-success float-right">Сохранить
+                      </button>
                     </div>
                   </div>
                 </li>
@@ -68,32 +117,51 @@
       </section>
       <section class="col-lg-8 connectedSortable">
         <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+
+              Терминалы
+            </h3>
+            <div class="float-right">
+              <button class="btn btn-sm btn-success" (click)="showAll()">Все</button>
+              &nbsp;
+              <button class="btn btn-sm btn-success" (click)="showOnline()">Онлайн</button>
+              &nbsp;
+              <button class="btn btn-sm btn-success" (click)="showOffline()">Оффлайн</button>
+            </div>
+          </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table no-margin">
+              <table class="table">
                 <thead>
                 <tr>
-                  <th>Terminal ID</th>
+                  <th>ID</th>
                   <th>Name</th>
                   <th>Location</th>
                   <th>Mac</th>
+                  <th>Software</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let terminal of terminals">
-                  <td>{{terminal.ID}}</td>
-                  <td>{{ terminal.Name }}</td>
-                  <td>{{ terminal.Location }}</td>
-                  <td>{{terminal.MacID}}</td>
-                  <td>
-                    <span *ngIf="terminal.Online" style="color: #51A351">Онлайн</span>
-                    <span *ngIf="!terminal.Online" style="color: #BD362F">Оффлайн</span>
-                  </td>
-                  <td>
-                    <button class="btn" [routerLink]="['/terminal/',  terminal.ID]">Подробнее</button>
-                  </td>
+                  <ng-container *ngIf="terminal.isVisible">
+                    <td>{{ terminal.ID}}</td>
+                    <td>{{ terminal.Name }}</td>
+                    <td>{{ terminal.Location }}</td>
+                    <td>{{ terminal.MacID}}</td>
+                    <td>{{ terminal.Version  }}</td>
+                    <td>
+                      <span *ngIf="terminal.Online" style="color: #51A351">Онлайн</span>
+                      <span *ngIf="!terminal.Online" style="color: #BD362F">Оффлайн</span>
+                    </td>
+                    <td>
+                    <span class="click" [routerLink]="['/terminal/',  terminal.ID]">
+                      <i class="fa fa-edit"></i>
+                    </span>
+                    </td>
+                  </ng-container>
                 </tr>
                 </tbody>
               </table>

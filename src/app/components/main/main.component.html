@@ -9,20 +9,18 @@
           <li class="breadcrumb-item"><a href="#">Главная</a></li>
           <li class="breadcrumb-item active">Dashboard</li>
         </ol>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
+      </div>
+    </div>
+  </div>
 </div>
-<!-- /.content-header -->
 
-<!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <!-- Small boxes (Stat box) -->
+
     <div class="row">
       <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-info">
+
+        <div class="small-box bg-gradient-gray-dark">
           <div class="inner">
             <h3>{{ terminals.length }}</h3>
             <p>Терминалов</p>
@@ -33,9 +31,7 @@
           <a href="#" class="small-box-footer">Узнать больше <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
-      <!-- ./col -->
       <div class="col-lg-3 col-6">
-        <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
             <h3>0</h3>
@@ -47,104 +43,10 @@
           <a href="#" class="small-box-footer">Узнать больше <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
-      <!-- ./col -->
     </div>
-    <!-- /.row -->
-    <!-- Main row -->
     <div class="row">
-      <!-- Left col -->
-      <section class="col-lg-4 connectedSortable">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="ion ion-clipboard mr-1"></i>
-              Группы
-            </h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <div class="table-responsive">
-                <p class="text-secondary" *ngIf="groups.length < 1">
-                  У вас нет групп
-                </p>
-                <ul class="list-unstyled">
-                  <li *ngFor="let g of groups" class="parent-hover">
-                      {{ g.Name }}
-                      <span class="float-right child-hover">удалить</span>
-                  </li>
-                </ul>
-            </div>
-          </div>
-          <!-- /.card-body -->
-          <div class="card-footer clearfix">
-            <div class="row">
-              <div class="col-6">
-                <input type="text" [(ngModel)]="newGroup.Name" class="form-control" placeholder="Название новой группы">
-              </div>
-              <div class="col-6">
-                <button (click)="createGroup()" class="btn btn-success">Создать</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="col-lg-8 connectedSortable">
-        <!-- TO DO List -->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="ion ion-clipboard mr-1"></i>
-              Терминалы
-            </h3>
 
-            <div class="card-tools">
-              <button class="btn btn-warning" (click)="update()">Обновить</button>
-            </div>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table no-margin">
-                <thead>
-                <tr>
-                  <th>Terminal ID</th>
-                  <th>Name</th>
-                  <th>Location</th>
-                  <th>Mac</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let terminal of terminals">
-                  <td>{{terminal.ID}}</td>
-                  <td>{{ terminal.Name }}</td>
-                  <td>{{ terminal.Location }}</td>
-                  <td>{{terminal.MacID}}</td>
-                  <td>
-                    <span *ngIf="terminal.Online" style="color: #51A351">Онлайн</span>
-                    <span *ngIf="!terminal.Online" style="color: #BD362F">Оффлайн</span>
-                  </td>
-                  <td>
-                    <button class="btn" [routerLink]="['/terminal/',  terminal.ID]">Подробнее</button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <!-- /.card-body -->
-          <div class="card-footer clearfix">
-
-          </div>
-        </div>
-        <!-- /.card -->
-      </section>
-      <!-- /.Left col -->
-      <!-- right col (We are only adding the ID to make the widgets sortable)-->
-
-      <!-- right col -->
     </div>
-    <!-- /.row (main row) -->
-  </div><!-- /.container-fluid -->
+
+  </div>
 </section>

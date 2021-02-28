@@ -2,19 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../../services/http/http.service";
 import {Terminal} from "../../models/terminal";
 import {ActivatedRoute} from "@angular/router";
-import {AppRoutingModule} from "../../app-routing.module";
 import {ToastrModule, ToastrService} from "ngx-toastr";
 import {SocketService} from "../../services/socket/socket.service";
 import {TerminalGroup} from "../../models/terminal-group";
+import {Finance} from "../../models/money/Finance";
 
 @Component({
   selector: 'app-terminal',
   templateUrl: './terminal.component.html',
   styleUrls: ['./terminal.component.css']
 })
+
 export class TerminalComponent implements OnInit {
   terminal = new Terminal();
+
   groups: TerminalGroup[] = [];
+
+  finance: Finance = new Finance("[]");
+
   constructor(
     private httpService: HttpService,
     private route: ActivatedRoute,
@@ -29,6 +34,7 @@ export class TerminalComponent implements OnInit {
       } else {
         this.httpService.getTerminal(+id).subscribe(terminal => {
           this.terminal = terminal;
+          this.finance = new Finance(terminal.Money)
         })
       }
     });
@@ -43,6 +49,8 @@ export class TerminalComponent implements OnInit {
         this.terminal.Online = false
       }
     });
+
+
 
     this.httpService.getTerminalGroups().subscribe((arr)=>{
       this.groups = arr

@@ -1,15 +1,17 @@
-<div class="container">
-  <h1>Вход</h1>
-  <br>
-  <div class="card">
-    <div class="card-body">
-      <label>Почта</label>
-      <input class="form-control" name="Email" [(ngModel)]="user.Email" type="text">
-      <br>
-      <label>Пароль</label>
-      <input class="form-control" name="Password" [(ngModel)]="user.Password" type="password">
-      <br>
-      <button (click)="login()" class="btn btn-success">Вход</button>
+<div class="main bg-gradient-gray-dark">
+  <div class="container">
+    <h2>Авторизация</h2>
+    <div class="card main-card">
+      <div class="card-body">
+        <label>Почта</label>
+        <input class="form-control" name="Email" [(ngModel)]="user.Email" type="text">
+        <br>
+        <label>Пароль</label>
+        <input class="form-control" name="Password" [(ngModel)]="user.Password" type="password">
+        <br>
+        <button (click)="login()" class="btn btn-outline-dark">Вход</button>
+      </div>
     </div>
   </div>
 </div>
+

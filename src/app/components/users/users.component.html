@@ -71,14 +71,13 @@
         <div class="card">
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table no-margin">
+              <table class="table">
                 <thead>
                 <tr>
-                  <th>Terminal ID</th>
-                  <th>Name</th>
-                  <th>Location</th>
-                  <th>Mac</th>
-                  <th>Status</th>
+                  <th>User ID</th>
+                  <th>UserName</th>
+                  <th>Role</th>
+                  <th>Email</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -87,6 +86,19 @@
                   <td>{{user.ID}}</td>
                   <td>{{ user.Name }}</td>
 
+                  <td *ngIf="!user.isEdit">
+                    <div *ngFor="let c of groups">
+                      <span *ngIf="c.ID == user.GroupID">{{ c.Name }}</span>
+                    </div>
+                  </td>
+                  <td *ngIf="user.isEdit">
+                    <select [(ngModel)]="user.GroupID" class="form-control">
+                      <option *ngFor="let c of groups" [ngValue]="c.ID">{{c.Name}}</option>
+                    </select>
+                  </td>
+                  <td>{{ user.Email }}</td>
+                  <td *ngIf="!user.isEdit"><i class="fa fa-edit" (click)="user.isEdit = true"></i></td>
+                  <td *ngIf="user.isEdit"><button class="btn" (click)="user.isEdit = false; saveUser(user)">Сохранить</button></td>
                 </tr>
                 </tbody>
               </table>

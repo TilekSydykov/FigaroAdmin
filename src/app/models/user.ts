@@ -7,4 +7,6 @@ export class User {
   CreatedAt: any = null;
   UpdatedAt: any = null;
   DeletedAt: any = null;
+
+  isEdit = false;
 }

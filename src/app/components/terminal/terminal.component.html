@@ -64,15 +64,33 @@
           <div class="card-body">
             <h5>Финансы</h5>
             <p>
-              Общий баланс: <b>200</b>
+              Общий баланс: <b>{{ finance.numberWithCommas(finance.sum) }}</b>
             </p>
             <h6>Детализация</h6>
-            <p>
-
-            </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" *ngFor="let n of finance.nominals">
+                    {{ finance.numberWithCommas(n.n) }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td *ngFor="let n of finance.nominals">
+                    {{ finance.numberWithCommas(n.c) }}
+                  </td>
+                </tr>
+                <tr>
+                  <th *ngFor="let n of finance.nominals">
+                    {{ finance.numberWithCommas(n.c * n.n) }}
+                  </th>
+                </tr>
+              </tbody>
+            </table>
             <hr>
             <h5>Ресурсы</h5>
-
+            
           </div>
         </div>
       </div>
